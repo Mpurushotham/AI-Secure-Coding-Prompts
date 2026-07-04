@@ -161,6 +161,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [Kubernetes](08-infrastructure-devsecops/kubernetes.md) | NetworkPolicy, admission control, PSS |
 | [Monitoring & Observability](08-infrastructure-devsecops/monitoring-observability.md) | Log hygiene, audit trails, alerting |
 | [Nginx](08-infrastructure-devsecops/nginx.md) | TLS, headers, proxy security |
+| [Platform Engineering](08-infrastructure-devsecops/platform-engineering.md) | Secure paved roads, IDP guardrails, golden paths |
 | [OAuth2 / OIDC](08-infrastructure-devsecops/oauth2-oidc.md) | Okta, Auth0, IdentityServer flows |
 | [Pulumi](08-infrastructure-devsecops/pulumi.md) | Secrets, policy as code, state |
 | [Service Mesh](08-infrastructure-devsecops/service-mesh.md) | Istio, Linkerd, mTLS, authz policies |
@@ -246,6 +247,12 @@ Design-time and cloud-platform prompts. Container, Kubernetes, Terraform/CDK/Pul
 | [Cloud Networking](14-cloud-architecture/cloud-networking.md) | VPC/VNet segmentation, private endpoints, egress, DNS |
 | [API Gateway & Management](14-cloud-architecture/api-gateway-management.md) | Edge authn, rate limits, backend protection, gateway policy |
 | [Managed Services Hardening](14-cloud-architecture/managed-services-hardening.md) | Storage, DBs, queues, caches, warehouses across clouds |
+
+---
+
+## Companion: Career Toolkit — [`career-toolkit/`](career-toolkit/)
+
+An adjacent (non-security) collection of AI prompts for engineers running a job search — résumé tailoring, cover letters, follow-up emails, interview prep, and the STAR method — built to *tailor your real experience truthfully*, never to fabricate. See [`career-toolkit/README.md`](career-toolkit/README.md).
 
 ---
 
