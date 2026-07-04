@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Secure Coding Prompts — make any AI assistant write secure code by default</title>
+<meta name="description" content="A copy-paste prompt library of 159 secure-coding prompts across 16 categories that make any AI coding assistant — Claude, Copilot, Cursor, Gemini — write secure code by default." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+<style>
+  :root{
+    --bg:#0b0f17; --bg-soft:#111725; --card:#141b2b; --card-2:#0f1626;
+    --border:#222d44; --border-soft:#1b2338;
+    --text:#e7ecf5; --muted:#9aa7bd; --faint:#6b7791;
+    --brand:#6ea8fe; --brand-2:#7ee0c0; --accent:#a78bfa;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --radius:16px; --maxw:1120px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f7f9fc; --bg-soft:#eef2f8; --card:#ffffff; --card-2:#f3f6fb;
+    --border:#e2e8f2; --border-soft:#edf1f7;
+    --text:#0f1726; --muted:#4b5769; --faint:#7b8697;
+    --brand:#2563eb; --brand-2:#0d9488; --accent:#7c3aed;
+    --shadow:0 10px 30px rgba(20,40,90,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--brand); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+  /* Nav */
+  header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
+    background:color-mix(in srgb, var(--bg) 82%, transparent); border-bottom:1px solid var(--border-soft)}
+  .nav-inner{display:flex; align-items:center; gap:16px; height:62px}
+  .brand{font-weight:800; letter-spacing:.2px; display:flex; align-items:center; gap:9px; font-size:1.02rem}
+  .brand .dot{font-size:1.25rem}
+  .nav-links{margin-left:auto; display:flex; align-items:center; gap:22px}
+  .nav-links a{color:var(--muted); font-weight:600; font-size:.92rem}
+  .nav-links a:hover{color:var(--text); text-decoration:none}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:12px;
+    font-weight:700; font-size:.92rem; border:1px solid transparent; cursor:pointer}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--accent)); color:#fff}
+  .btn-primary:hover{text-decoration:none; filter:brightness(1.06)}
+  .btn-ghost{background:transparent; border-color:var(--border); color:var(--text)}
+  .btn-ghost:hover{text-decoration:none; border-color:var(--brand)}
+  .theme-toggle{background:transparent; border:1px solid var(--border); color:var(--text);
+    width:38px; height:38px; border-radius:10px; cursor:pointer; font-size:1rem; line-height:1}
+  @media(max-width:760px){ .nav-links a.hide-sm{display:none} }
+
+  /* Hero */
+  .hero{position:relative; overflow:hidden; padding:76px 0 54px}
+  .hero::before{content:""; position:absolute; inset:-30% -10% auto -10%; height:520px;
+    background:radial-gradient(60% 60% at 25% 20%, color-mix(in srgb,var(--brand) 26%,transparent), transparent 70%),
+               radial-gradient(50% 50% at 85% 10%, color-mix(in srgb,var(--accent) 22%,transparent), transparent 70%);
+    filter:blur(10px); z-index:0}
+  .hero .wrap{position:relative; z-index:1}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:.8rem; font-weight:700; letter-spacing:.6px;
+    text-transform:uppercase; color:var(--brand-2); border:1px solid var(--border); background:var(--card);
+    padding:6px 12px; border-radius:999px}
+  h1.title{font-size:clamp(2.1rem,5vw,3.5rem); line-height:1.08; margin:18px 0 8px; font-weight:850; letter-spacing:-.02em}
+  h1.title .grad{background:linear-gradient(120deg,var(--brand),var(--brand-2),var(--accent));
+    -webkit-background-clip:text; background-clip:text; color:transparent}
+  .lede{font-size:clamp(1.05rem,2.2vw,1.28rem); color:var(--muted); max-width:720px; margin:0 0 26px}
+  .cta{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:30px}
+  .stats{display:flex; flex-wrap:wrap; gap:10px}
+  .pill{display:inline-flex; align-items:center; gap:8px; background:var(--card); border:1px solid var(--border);
+    padding:9px 14px; border-radius:12px; font-size:.9rem; color:var(--muted); font-weight:600}
+  .pill b{color:var(--text); font-size:1.02rem}
+
+  /* Sections */
+  section{padding:56px 0}
+  .section-head{margin-bottom:26px}
+  .kicker{color:var(--brand-2); font-weight:800; letter-spacing:.5px; text-transform:uppercase; font-size:.78rem}
+  h2{font-size:clamp(1.5rem,3.2vw,2.05rem); margin:8px 0 6px; letter-spacing:-.01em; font-weight:800}
+  .sub{color:var(--muted); max-width:760px}
+
+  .grid{display:grid; gap:16px}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  .cols-2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:920px){ .cols-3{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:600px){ .cols-3,.cols-2{grid-template-columns:1fr} }
+
+  .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:22px}
+  .card h3{margin:0 0 6px; font-size:1.08rem}
+  .card p{margin:0; color:var(--muted); font-size:.95rem}
+  .card .ico{font-size:1.6rem; display:block; margin-bottom:10px}
+
+  /* Why/When/Who */
+  .wcard{background:linear-gradient(180deg,var(--card),var(--card-2)); border:1px solid var(--border);
+    border-radius:var(--radius); padding:24px}
+  .wcard .ico{font-size:1.8rem}
+  .wcard h3{font-size:1.12rem; margin:12px 0 8px}
+  .wcard p{color:var(--muted); margin:0; font-size:.96rem}
+
+  /* Roles list */
+  .roles{display:grid; gap:12px; grid-template-columns:repeat(2,1fr)}
+  @media(max-width:700px){ .roles{grid-template-columns:1fr} }
+  .role{display:flex; gap:14px; align-items:flex-start; background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:16px 18px}
+  .role .e{font-size:1.5rem; line-height:1.2}
+  .role b{display:block; margin-bottom:2px}
+  .role span{color:var(--muted); font-size:.92rem}
+
+  /* Category cards */
+  .cat{display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:18px 18px 16px; transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease}
+  .cat:hover{transform:translateY(-3px); border-color:var(--brand); box-shadow:var(--shadow); text-decoration:none}
+  .cat .top{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+  .cat .e{font-size:1.7rem}
+  .cat .count{font-size:.74rem; font-weight:700; color:var(--brand-2); background:var(--card-2);
+    border:1px solid var(--border); padding:3px 9px; border-radius:999px}
+  .cat h3{margin:0 0 4px; font-size:1.02rem; color:var(--text)}
+  .cat p{margin:0; color:var(--muted); font-size:.88rem; line-height:1.5}
+  .cat .num{color:var(--faint); font-weight:700; font-size:.78rem}
+
+  /* Steps */
+  .steps{counter-reset:step; display:grid; gap:14px; grid-template-columns:repeat(2,1fr)}
+  @media(max-width:700px){ .steps{grid-template-columns:1fr} }
+  .step{position:relative; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px 20px 20px 62px}
+  .step::before{counter-increment:step; content:counter(step); position:absolute; left:18px; top:18px;
+    width:30px; height:30px; border-radius:9px; display:grid; place-items:center; font-weight:800; color:#fff;
+    background:linear-gradient(135deg,var(--brand),var(--accent))}
+  .step b{display:block; margin-bottom:4px}
+  .step p{margin:0; color:var(--muted); font-size:.92rem}
+  .step code{font-size:.85em; background:var(--card-2); border:1px solid var(--border); padding:1px 6px; border-radius:6px}
+
+  /* Contract */
+  .contract{display:grid; gap:10px}
+  .contract li{list-style:none; display:flex; gap:12px; align-items:flex-start; background:var(--card);
+    border:1px solid var(--border); border-radius:12px; padding:14px 16px}
+  .contract .k{font-weight:800; color:var(--brand-2); min-width:150px}
+  .contract p{margin:0; color:var(--muted); font-size:.93rem}
+  ul.contract{padding:0; margin:0}
+
+  /* Badges */
+  .badges{display:flex; flex-wrap:wrap; gap:8px}
+  .badge{font-size:.8rem; font-weight:600; color:var(--muted); background:var(--card); border:1px solid var(--border);
+    padding:6px 11px; border-radius:8px}
+
+  .callout{background:linear-gradient(135deg, color-mix(in srgb,var(--brand) 14%,var(--card)), var(--card));
+    border:1px solid var(--border); border-radius:var(--radius); padding:26px; display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+  .callout .e{font-size:2.2rem}
+  .callout div{flex:1; min-width:240px}
+  .callout h3{margin:0 0 4px}
+  .callout p{margin:0; color:var(--muted)}
+
+  footer{border-top:1px solid var(--border-soft); padding:34px 0 48px; color:var(--muted); font-size:.9rem}
+  footer .frow{display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center}
+  footer a{color:var(--muted)} footer a:hover{color:var(--text)}
+  .disc{margin-top:16px; font-size:.82rem; color:var(--faint)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <span class="brand"><span class="dot">🛡️</span> AI Secure Coding Prompts</span>
+    <nav class="nav-links">
+      <a href="#why" class="hide-sm">Why</a>
+      <a href="#categories" class="hide-sm">Categories</a>
+      <a href="#how" class="hide-sm">How to use</a>
+      <a href="https://github.com/Mpurushotham/AI-Secure-Coding-Prompts">GitHub ↗</a>
+      <button class="theme-toggle" id="themeBtn" aria-label="Toggle light/dark theme" title="Toggle theme">🌙</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">🔐 Secure-by-default AI coding</span>
+    <h1 class="title">Make any AI assistant write <span class="grad">secure code</span> by default.</h1>
+    <p class="lede">A copy-paste prompt library that encodes framework-specific security rules, forbidden patterns, and verification checklists — so secure code is the <strong>first draft</strong>, not a review afterthought.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#categories">🧭 Browse the library</a>
+      <a class="btn btn-ghost" href="https://github.com/Mpurushotham/AI-Secure-Coding-Prompts">⭐ View on GitHub</a>
+    </div>
+    <div class="stats">
+      <span class="pill"><b>159</b> secure prompts</span>
+      <span class="pill"><b>16</b> categories</span>
+      <span class="pill"><b>6</b> career prompts</span>
+      <span class="pill">🤖 Works with <b>any</b> LLM</span>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Why it matters</div>
+      <h2>🤔 Why · ⏰ When · 🎯 How it helps</h2>
+      <p class="sub">AI assistants generate <em>plausible</em> code, not <em>secure</em> code. They optimize for "does it run?", quietly skip the controls that don't show up in a demo, and will confidently invent APIs and packages that don't exist. Reviewing every generated line doesn't scale — so this library moves security into the model's first draft.</p>
+    </div>
+    <div class="grid cols-3">
+      <div class="wcard">
+        <span class="ico">💡</span>
+        <h3>Why this exists</h3>
+        <p>Left unconstrained, assistants ship SQL injection, hardcoded secrets, missing authorization, and disabled TLS checks. Each prompt gives the model a concrete, framework-native rule set <em>before</em> it writes anything.</p>
+      </div>
+      <div class="wcard">
+        <span class="ico">⏰</span>
+        <h3>When to use it</h3>
+        <p>Paste the matching prompt <em>before</em> you ask an assistant to write, refactor, or review code — as a system prompt or rules file (<span class="mono">CLAUDE.md</span>, <span class="mono">.cursorrules</span>). Several prompts also work at design and review time.</p>
+      </div>
+      <div class="wcard">
+        <span class="ico">🎯</span>
+        <h3>How it helps</h3>
+        <p>Concrete beats comprehensive. Real APIs, real config keys, and named anti-patterns — not vague "best practices" — plus a self-check the model runs before returning code. Fewer vulns, less review back-and-forth, a consistent bar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="who" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Who it powers</div>
+      <h2>👥 Built for the people who ship</h2>
+      <p class="sub">Engineers and adjacent professionals using AI to move faster — without trading away security.</p>
+    </div>
+    <div class="roles">
+      <div class="role"><span class="e">🧑‍💻</span><div><b>Backend / frontend / mobile engineers</b><span>Framework-native secure defaults for your exact stack, so generated code passes review the first time.</span></div></div>
+      <div class="role"><span class="e">🛠️</span><div><b>DevSecOps &amp; platform engineers</b><span>Pipeline security gates, IaC guardrails, repo governance, and secure paved-road patterns.</span></div></div>
+      <div class="role"><span class="e">☁️</span><div><b>Cloud &amp; migration engineers</b><span>Landing-zone-first AWS / Azure / GCP designs, network segmentation, managed-service hardening.</span></div></div>
+      <div class="role"><span class="e">🔐</span><div><b>Security engineers &amp; architects</b><span>Threat modeling, authorization design, cryptography, and a compliance-framework mapping layer.</span></div></div>
+      <div class="role"><span class="e">🤖</span><div><b>AI / agentic developers</b><span>Guardrails for building agents <em>and</em> for coding safely <em>with</em> AI assistants.</span></div></div>
+      <div class="role"><span class="e">📈</span><div><b>Engineering leaders</b><span>A ready-made org standard for adopting AI coding tools without a security regression.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="categories" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The library</div>
+      <h2>🗂️ 16 categories · 159 prompts</h2>
+      <p class="sub">Each card opens the folder on GitHub, where every prompt renders with a one-click copy button. Stack prompts when a task spans domains.</p>
+    </div>
+    <div class="grid cols-3" id="catGrid"></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Workflow</div>
+      <h2>📋 How to use it — four steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><b>Find your stack</b><p>Open the category and pick the prompt for your framework, cloud, or concern.</p></div>
+      <div class="step"><b>Paste the prompt block first</b><p>Drop the fenced <code>text</code> block into your assistant as a system prompt or rules file — <em>before</em> you ask for code.</p></div>
+      <div class="step"><b>Give it your real task</b><p>"Build a file-upload endpoint", "review this PR", "write the Terraform for our VPC." The rules stay active all session.</p></div>
+      <div class="step"><b>Stack prompts for cross-domain work</b><p>e.g. <code>python.md</code> + <code>sql-injection-prevention.md</code> + <code>jwt-security.md</code> for a Flask API with auth.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contract" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The contract</div>
+      <h2>🧱 Every prompt follows the same shape</h2>
+      <p class="sub">Predictable structure means predictable behavior — the model knows exactly what "secure" means for the task.</p>
+    </div>
+    <ul class="contract">
+      <li><span class="k">🎭 Role &amp; scope</span><p>Who the AI acts as and which code the rules apply to.</p></li>
+      <li><span class="k">📐 Hard requirements</span><p>Numbered, specific, framework-native controls — real APIs and config keys, not platitudes.</p></li>
+      <li><span class="k">🚫 Forbidden patterns</span><p>Things the AI must never emit, even if asked casually.</p></li>
+      <li><span class="k">✅ Verification</span><p>A self-check the AI runs before returning code.</p></li>
+      <li><span class="k">🪝 Escape hatch</span><p>If a requirement can't be met, the AI must say so — instead of silently degrading security.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="standards" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Grounded in standards</div>
+      <h2>📚 Mapped to the frameworks that matter</h2>
+      <p class="sub">Referenced throughout the library, so the guidance ties back to recognized security and compliance baselines.</p>
+    </div>
+    <div class="badges">
+      <span class="badge">OWASP Top 10</span><span class="badge">OWASP ASVS 5.0</span><span class="badge">OWASP API Top 10</span>
+      <span class="badge">OWASP MASVS</span><span class="badge">OWASP LLM Top 10</span><span class="badge">OWASP Agentic Top 10</span>
+      <span class="badge">CWE Top 25</span><span class="badge">NIST SP 800-63B</span><span class="badge">NIST 800-53 / 190 / 207</span>
+      <span class="badge">NIST CSF 2.0</span><span class="badge">NIST SSDF</span><span class="badge">NIST AI RMF</span>
+      <span class="badge">CIS Benchmarks &amp; Controls v8</span><span class="badge">ISO/IEC 27001 &amp; 42001</span><span class="badge">SOC 2</span>
+      <span class="badge">SLSA</span><span class="badge">GDPR</span><span class="badge">DORA</span><span class="badge">NIS2</span><span class="badge">CRA</span><span class="badge">EU AI Act</span>
+    </div>
+  </div>
+</section>
+
+<section id="career">
+  <div class="wrap">
+    <div class="callout">
+      <span class="e">🚀</span>
+      <div>
+        <h3>Bonus: the Career Toolkit</h3>
+        <p>A companion set of AI prompts for engineers running a job search — résumé tailoring, cover letters, follow-up emails, interview prep, and the STAR method — built to <em>tailor your real experience truthfully</em>, never to fabricate.</p>
+      </div>
+      <a class="btn btn-ghost" href="https://github.com/Mpurushotham/AI-Secure-Coding-Prompts/tree/main/career-toolkit">Open toolkit ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <span>🛡️ <strong>AI Secure Coding Prompts</strong> · MIT Licensed · © 2026 Purushotham Muktha</span>
+      <span>
+        <a href="https://github.com/Mpurushotham/AI-Secure-Coding-Prompts">GitHub</a> ·
+        <a href="https://github.com/Mpurushotham/AI-Secure-Coding-Prompts/blob/main/CONTRIBUTING.md">Contribute</a> ·
+        <a href="https://github.com/Mpurushotham/AI-Secure-Coding-Prompts/blob/main/LICENSE">License</a>
+      </span>
+    </div>
+    <p class="disc">Category taxonomy inspired by the Manicode Security prompt library. All prompt content is original. Prompts encode defensive, authorized-use security guidance only.</p>
+  </div>
+</footer>
+
+<script>
+  // Category data → cards linking to the GitHub folder for each.
+  var base = "https://github.com/Mpurushotham/AI-Secure-Coding-Prompts/tree/main/";
+  var cats = [
+    ["01","⚙️","Backend Frameworks",19,"Python, Node, Java, Go, Rust, PHP, Ruby, .NET, GraphQL, gRPC, databases.","01-backend-frameworks"],
+    ["02","🎨","Client-Side Frameworks",18,"React, Vue, Angular, Svelte, Next.js, and the XSS sinks in each.","02-client-side-frameworks"],
+    ["03","🌐","Web & API Security",17,"Injection, XSS, CSRF, SSRF, JWT, CORS, CSP, webhooks, uploads.","03-web-api-security"],
+    ["04","🔑","Authentication",7,"Password storage, MFA, sessions, SSO, passwordless, recovery.","04-authentication"],
+    ["05","🛂","Authorization",8,"RBAC, ABAC, ReBAC, OPA, OpenFGA, SpiceDB, Casbin, Cedar.","05-authorization"],
+    ["06","🔐","Cryptography",6,"AEAD, key management, hashing, TLS, secure randomness.","06-cryptography"],
+    ["07","🤖","AI & Agentic Security",7,"Agent guardrails, MCP, RAG, model integrity, EU AI Act.","07-ai-agentic-security"],
+    ["08","🛠️","Infrastructure & DevSecOps",20,"Docker, Kubernetes, Terraform, CI/CD, pipeline gates, repo governance.","08-infrastructure-devsecops"],
+    ["09","🔒","Secrets Management",13,"Vault, KMS, Key Vault, Secret Manager, ESO, SOPS, and more.","09-secrets-management"],
+    ["10","📱","Mobile",8,"iOS, Android, React Native, Flutter, Electron, release hardening.","10-mobile"],
+    ["11","🔌","Systems, Embedded & IoT",9,"C/C++, embedded C, FreeRTOS, Zephyr, IoT protocols, firmware.","11-systems-embedded-iot"],
+    ["12","🧱","WebAssembly",5,"Browser & server WASM, memory safety, crypto, supply chain.","12-webassembly"],
+    ["13","✅","Code Quality",1,"A language-agnostic secure-coding baseline for any task.","13-code-quality"],
+    ["14","☁️","Cloud & Architecture",16,"AWS/Azure/GCP security & migration, n-tier patterns, compliance.","14-cloud-architecture"],
+    ["15","✨","AI-Assisted Development",4,"Coding safely with AI, Claude Code config, org rollout, plan→validate.","15-ai-assisted-development"],
+    ["16","📘","Engineering Playbooks",1,"Common secure solving patterns for DevSecOps, SRE, platform, cloud.","16-engineering-playbooks"]
+  ];
+  var grid = document.getElementById("catGrid");
+  grid.innerHTML = cats.map(function(c){
+    return '<a class="cat" href="'+base+c[5]+'">'+
+      '<div class="top"><span class="e">'+c[1]+'</span><span class="count">'+c[3]+' prompts</span></div>'+
+      '<span class="num">'+c[0]+'</span>'+
+      '<h3>'+c[2]+'</h3><p>'+c[4]+'</p></a>';
+  }).join("");
+
+  // Theme toggle with persistence; default follows OS, else dark.
+  var root = document.documentElement, btn = document.getElementById("themeBtn");
+  function apply(t){ root.setAttribute("data-theme", t); btn.textContent = t === "dark" ? "🌙" : "☀️"; }
+  var saved = null;
+  try { saved = localStorage.getItem("ascp-theme"); } catch(e){}
+  if(!saved){ saved = (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark"; }
+  apply(saved);
+  btn.addEventListener("click", function(){
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    apply(next);
+    try { localStorage.setItem("ascp-theme", next); } catch(e){}
+  });
+</script>
+</body>
+</html>

@@ -1,14 +1,47 @@
-# AI Secure Coding Prompts
+# 🛡️ AI Secure Coding Prompts
 
-**A copy-paste prompt library that makes any AI coding assistant write secure code by default.**
+> **A copy-paste prompt library that makes any AI coding assistant write secure code by default.**
 
-AI assistants do not write secure code unless you make them. Each prompt in this library encodes framework-specific security rules, forbidden patterns, and verification checklists so that secure code is the *default* output — not something you bolt on in review.
+**🌐 Live site:** **https://mpurushotham.github.io/AI-Secure-Coding-Prompts/** — a browsable knowledge hub for the whole library.
 
-Works with **any** AI agent or LLM: Claude / Claude Code, ChatGPT, GitHub Copilot, Cursor, Windsurf, Gemini, and local models.
+`159 secure-coding prompts` · `16 categories` · `6 career prompts` · works with any LLM
+
+AI assistants are fast, confident, and — left unconstrained — perfectly happy to ship SQL injection, hardcoded secrets, and disabled TLS checks. Each prompt in this library encodes framework-specific security rules, forbidden patterns, and verification checklists so that secure code is the **default output** — not something you bolt on in review.
+
+✅ Works with **any** AI agent or LLM: Claude / Claude Code, ChatGPT, GitHub Copilot, Cursor, Windsurf, Gemini, and local models.
 
 ---
 
-## How to use this library
+## 🤔 Why · ⏰ When · 👥 Who
+
+### 💡 Why this exists
+
+AI coding assistants generate plausible code, not *secure* code. They optimize for "does it run?", omit the controls that don't show up in a quick demo (authorization, output encoding, egress restrictions, key management), and will confidently invent APIs or packages that don't exist. Reviewing every generated line for these gaps doesn't scale. **These prompts move security left — into the model's first draft** — by giving the assistant a concrete, framework-native rule set *before* it writes anything.
+
+### ⏰ When to use it
+
+- **Before** you ask an assistant to write, refactor, or review code — paste the matching prompt as a system prompt or rules file so the constraints are active for the whole session.
+- When onboarding a team to AI-assisted development and you want a shared, secure-by-default baseline instead of everyone improvising.
+- During design and review — several prompts (threat modeling, architecture, compliance mapping, plan→spec→validate) work at the design stage, not just the code stage.
+
+### 👥 Who it powers
+
+| Role | What it gives you |
+|---|---|
+| 🧑‍💻 **Backend / frontend / mobile engineers** | Framework-native secure defaults for your exact stack, so generated code passes review the first time |
+| 🛠️ **DevSecOps & platform engineers** | Pipeline security gates, IaC guardrails, repo governance, and secure paved-road patterns |
+| ☁️ **Cloud & migration engineers** | Landing-zone-first AWS/Azure/GCP designs, networking segmentation, managed-service hardening |
+| 🔐 **Security engineers & architects** | Threat modeling, authz design, crypto, and a compliance-framework mapping layer |
+| 🤖 **AI / agentic developers** | Guardrails for building agents *and* for coding safely *with* AI assistants |
+| 📈 **Eng leaders** | A ready-made org standard for adopting AI coding tools without a security regression |
+
+### 🎯 How it helps
+
+Concrete beats comprehensive. Every prompt names **real APIs, config keys, and forbidden anti-patterns** for a specific stack — not vague "follow best practices" advice — and ends with a self-check the assistant runs before returning code. The result: fewer vulnerabilities in the first draft, less security back-and-forth in review, and a consistent bar across everyone using AI to ship.
+
+---
+
+## 📋 How to use this library
 
 1. **Find your stack** in the index below and open the prompt file.
 2. **Copy the entire prompt block** (the fenced `text` block) into your AI assistant *before* you ask it to write or review code — as a system prompt, a rules file (`CLAUDE.md`, `.cursorrules`, `copilot-instructions.md`), or simply the first message of the session.
@@ -23,13 +56,13 @@ Every prompt follows the same contract:
 - **Verification** — a self-check the AI runs before returning code
 - **Escape hatch** — if a requirement can't be met, the AI must say so explicitly instead of silently degrading security
 
-Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API Security Top 10 (2023), OWASP MASVS, OWASP Top 10 for LLM Applications, OWASP Agentic AI Top 10, CWE Top 25, NIST SP 800-63B / 800-57 / 800-190, CIS Benchmarks, SLSA.
+Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API Security Top 10 (2023), OWASP MASVS, OWASP Top 10 for LLM Applications, OWASP Agentic AI Top 10, CWE Top 25, NIST SP 800-63B / 800-57 / 800-190 / 800-207, NIST CSF 2.0, NIST SSDF (800-218), NIST AI RMF, CIS Benchmarks & Controls v8, ISO/IEC 27001 & 42001, SOC 2, SLSA, and the EU regulatory set (GDPR, DORA, NIS2, CRA, EU AI Act) where applicable.
 
 ---
 
 ## Index
 
-### 01 · Backend Frameworks — [`01-backend-frameworks/`](01-backend-frameworks/)
+### 01 · ⚙️ Backend Frameworks — [`01-backend-frameworks/`](01-backend-frameworks/)
 
 | Prompt | Covers |
 |---|---|
@@ -53,7 +86,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [Swift Server](01-backend-frameworks/swift-vapor.md) | Vapor |
 | [Unity](01-backend-frameworks/unity.md) | Game client/server trust, asset & save integrity |
 
-### 02 · Client-Side Frameworks — [`02-client-side-frameworks/`](02-client-side-frameworks/)
+### 02 · 🎨 Client-Side Frameworks — [`02-client-side-frameworks/`](02-client-side-frameworks/)
 
 | Prompt | Covers |
 |---|---|
@@ -76,7 +109,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [TypeScript](02-client-side-frameworks/typescript.md) | Type-level trust boundaries, validation |
 | [Vue.js](02-client-side-frameworks/vuejs.md) | v-html, template compilation, Pinia |
 
-### 03 · Web & API Security — [`03-web-api-security/`](03-web-api-security/)
+### 03 · 🌐 Web & API Security — [`03-web-api-security/`](03-web-api-security/)
 
 | Prompt | Covers |
 |---|---|
@@ -98,7 +131,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [XSS Prevention](03-web-api-security/xss-prevention.md) | Contextual encoding, sanitization |
 | [XXE Prevention](03-web-api-security/xxe-prevention.md) | Safe XML parsing in every language |
 
-### 04 · Authentication — [`04-authentication/`](04-authentication/)
+### 04 · 🔑 Authentication — [`04-authentication/`](04-authentication/)
 
 | Prompt | Covers |
 |---|---|
@@ -110,7 +143,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [Single Sign-On](04-authentication/single-sign-on.md) | SAML, OIDC, assertion validation |
 | [Passwordless Authentication](04-authentication/passwordless-authentication.md) | Passkeys/WebAuthn, magic links |
 
-### 05 · Authorization — [`05-authorization/`](05-authorization/)
+### 05 · 🛂 Authorization — [`05-authorization/`](05-authorization/)
 
 | Prompt | Covers |
 |---|---|
@@ -123,7 +156,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [Casbin](05-authorization/casbin.md) | Model/policy files, enforcement points |
 | [Cedar Policy](05-authorization/cedar-policy.md) | AWS Cedar / Verified Permissions |
 
-### 06 · Cryptography — [`06-cryptography/`](06-cryptography/)
+### 06 · 🔐 Cryptography — [`06-cryptography/`](06-cryptography/)
 
 | Prompt | Covers |
 |---|---|
@@ -134,7 +167,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [Key Management](06-cryptography/key-management.md) | Lifecycle, rotation, envelope encryption |
 | [Secure Random](06-cryptography/secure-random-number-generation.md) | CSPRNGs per language, token generation |
 
-### 07 · AI & Agentic Security — [`07-ai-agentic-security/`](07-ai-agentic-security/)
+### 07 · 🤖 AI & Agentic Security — [`07-ai-agentic-security/`](07-ai-agentic-security/)
 
 | Prompt | Covers |
 |---|---|
@@ -146,7 +179,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [AI Supply Chain & Model Integrity](07-ai-agentic-security/ai-supply-chain-model-integrity.md) | Model provenance, safetensors, registries |
 | [RAG Pipeline Security](07-ai-agentic-security/rag-pipeline-security.md) | Indirect injection, doc-level ACLs |
 
-### 08 · Infrastructure & DevSecOps — [`08-infrastructure-devsecops/`](08-infrastructure-devsecops/)
+### 08 · 🛠️ Infrastructure & DevSecOps — [`08-infrastructure-devsecops/`](08-infrastructure-devsecops/)
 
 | Prompt | Covers |
 |---|---|
@@ -154,9 +187,11 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [AWS CloudFormation & CDK](08-infrastructure-devsecops/aws-cloudformation-cdk.md) | Guard rails, cdk-nag, IAM synthesis |
 | [CI/CD Pipelines](08-infrastructure-devsecops/cicd-pipelines.md) | Pipeline poisoning, artifact integrity |
 | [Cloud Security](08-infrastructure-devsecops/cloud-security-aws-azure.md) | AWS & Azure account/IAM baselines |
+| [DevSecOps Pipeline Controls](08-infrastructure-devsecops/devsecops-pipeline-controls.md) | PR/CI security gates, SBOM, compliance mapping, PR summaries |
 | [Docker & Containers](08-infrastructure-devsecops/docker-containers.md) | Dockerfile hardening, image pipelines |
 | [GitHub Actions](08-infrastructure-devsecops/github-actions.md) | Workflow injection, OIDC, pinning |
 | [GitLab CI](08-infrastructure-devsecops/gitlab-ci.md) | Runner security, protected branches |
+| [Source Code Management Governance](08-infrastructure-devsecops/source-code-management-governance.md) | GitHub/GitLab rulesets, quality gates, notifications, shared workflows |
 | [HAProxy](08-infrastructure-devsecops/haproxy.md) | TLS termination, header hygiene, ACLs |
 | [Kubernetes](08-infrastructure-devsecops/kubernetes.md) | NetworkPolicy, admission control, PSS |
 | [Monitoring & Observability](08-infrastructure-devsecops/monitoring-observability.md) | Log hygiene, audit trails, alerting |
@@ -169,7 +204,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [Terraform](08-infrastructure-devsecops/terraform.md) | AWS/Azure/GCP modules, state security |
 | [WAF](08-infrastructure-devsecops/waf.md) | AWS WAF, ModSecurity, Cloudflare |
 
-### 09 · Secrets Management — [`09-secrets-management/`](09-secrets-management/)
+### 09 · 🔒 Secrets Management — [`09-secrets-management/`](09-secrets-management/)
 
 | Prompt | Covers |
 |---|---|
@@ -187,7 +222,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [Mozilla SOPS](09-secrets-management/mozilla-sops.md) | age/KMS encryption, git workflows |
 | [Vercel Secrets](09-secrets-management/vercel-secrets.md) | Env vars, edge config, preview envs |
 
-### 10 · Mobile — [`10-mobile/`](10-mobile/)
+### 10 · 📱 Mobile — [`10-mobile/`](10-mobile/)
 
 | Prompt | Covers |
 |---|---|
@@ -200,7 +235,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [Mobile Supply Chain & Release](10-mobile/mobile-supply-chain-release.md) | Signing, store hardening, SDK vetting |
 | [Mobile Data Protection & Privacy](10-mobile/mobile-data-protection-privacy.md) | PII handling, consent, telemetry |
 
-### 11 · Systems, Embedded & IoT — [`11-systems-embedded-iot/`](11-systems-embedded-iot/)
+### 11 · 🔌 Systems, Embedded & IoT — [`11-systems-embedded-iot/`](11-systems-embedded-iot/)
 
 | Prompt | Covers |
 |---|---|
@@ -214,7 +249,7 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [IoT Cloud Security](11-systems-embedded-iot/iot-cloud-security.md) | Device identity, fleet provisioning |
 | [Firmware Vulnerability Analysis](11-systems-embedded-iot/firmware-vulnerability-analysis.md) | Binary analysis, CVE triage (defensive) |
 
-### 12 · WebAssembly — [`12-webassembly/`](12-webassembly/)
+### 12 · 🧱 WebAssembly — [`12-webassembly/`](12-webassembly/)
 
 | Prompt | Covers |
 |---|---|
@@ -224,13 +259,13 @@ Standards referenced throughout: OWASP Top 10 (2021), OWASP ASVS 5.0, OWASP API 
 | [WASM Supply Chain](12-webassembly/wasm-supply-chain-security.md) | Module provenance, registries |
 | [WASM Memory Safety](12-webassembly/wasm-memory-safety.md) | Linear memory, host bindings |
 
-### 13 · Code Quality — [`13-code-quality/`](13-code-quality/)
+### 13 · ✅ Code Quality — [`13-code-quality/`](13-code-quality/)
 
 | Prompt | Covers |
 |---|---|
 | [General Secure Coding Standards](13-code-quality/general-secure-coding-standards.md) | Language-agnostic baseline for any task |
 
-### 14 · Cloud & Architecture — [`14-cloud-architecture/`](14-cloud-architecture/)
+### 14 · ☁️ Cloud & Architecture — [`14-cloud-architecture/`](14-cloud-architecture/)
 
 Design-time and cloud-platform prompts. Container, Kubernetes, Terraform/CDK/Pulumi, service mesh, WAF, serverless, and the combined AWS+Azure baseline live in [`08-infrastructure-devsecops/`](08-infrastructure-devsecops/); this category adds architecture-level and per-cloud depth.
 
@@ -239,14 +274,36 @@ Design-time and cloud-platform prompts. Container, Kubernetes, Terraform/CDK/Pul
 | [Architecture Diagrams](14-cloud-architecture/architecture-diagrams.md) | Security-annotated diagram-as-code, trust boundaries, gaps |
 | [Threat Modeling](14-cloud-architecture/threat-modeling.md) | STRIDE, attack chains, prioritized controls |
 | [Secure Reference Architectures](14-cloud-architecture/secure-reference-architectures.md) | 3-tier, microservices, event-driven, serverless, data, JAMstack |
+| [N-Tier Architecture Patterns](14-cloud-architecture/tiered-architecture-patterns.md) | 2/3/4-tier as real security boundaries, segmentation, inter-tier auth |
 | [AWS Security](14-cloud-architecture/aws-security.md) | Accounts, SCPs, IAM, KMS, S3, detection (deep dive) |
+| [AWS Migration & DevSecOps](14-cloud-architecture/aws-migration-devsecops.md) | Landing zone, 7 Rs, secure migration, platform management |
 | [Azure Security](14-cloud-architecture/azure-security.md) | Entra ID, PIM, Policy, Key Vault, Defender (deep dive) |
+| [Azure Migration & DevSecOps](14-cloud-architecture/azure-migration-devsecops.md) | CAF landing zones, Azure Migrate, secure migration, platform mgmt |
 | [GCP Security](14-cloud-architecture/gcp-security.md) | Org policy, IAM, VPC-SC, CMEK, SCC (deep dive) |
+| [GCP Migration & DevSecOps](14-cloud-architecture/gcp-migration-devsecops.md) | Org foundation, Migration Center, secure migration, platform mgmt |
+| [Cloud Compliance Frameworks](14-cloud-architecture/cloud-compliance-frameworks.md) | CIS/NIST/ISO/SOC 2/GDPR/DORA/NIS2/CRA/IEC control mapping |
 | [Multi-Cloud & Hybrid](14-cloud-architecture/multi-cloud-hybrid-security.md) | Federated identity, cross-cloud connectivity, uniform policy |
 | [SaaS Multi-Tenancy](14-cloud-architecture/saas-multi-tenancy.md) | Tenant isolation, per-tenant data, onboarding/offboarding |
 | [Cloud Networking](14-cloud-architecture/cloud-networking.md) | VPC/VNet segmentation, private endpoints, egress, DNS |
 | [API Gateway & Management](14-cloud-architecture/api-gateway-management.md) | Edge authn, rate limits, backend protection, gateway policy |
 | [Managed Services Hardening](14-cloud-architecture/managed-services-hardening.md) | Storage, DBs, queues, caches, warehouses across clouds |
+
+### 15 · ✨ AI-Assisted Development — [`15-ai-assisted-development/`](15-ai-assisted-development/)
+
+Using AI coding assistants *safely* (distinct from [`07-ai-agentic-security/`](07-ai-agentic-security/), which is about *building* secure AI agents/apps).
+
+| Prompt | Covers |
+|---|---|
+| [Secure AI-Assisted Coding](15-ai-assisted-development/secure-ai-assisted-coding.md) | Treating AI output as untrusted, hallucinated deps, no leaked secrets, review discipline |
+| [Plan → Spec → Review → Validate Workflow](15-ai-assisted-development/plan-spec-review-workflow.md) | Reviewing plans/specs before code, abuse-case specs, validating & refining agent outputs |
+| [Claude Code Project Config](15-ai-assisted-development/claude-code-project-config.md) | Secure CLAUDE.md, commands, skills, subagents, plugins, hooks, MCP, settings |
+| [AI Coding Tool Rollout](15-ai-assisted-development/ai-coding-tools-org-adoption.md) | Claude/Gemini/Copilot/Codex org adoption, data governance, guardrails, review gates |
+
+### 16 · 📘 Engineering Playbooks — [`16-engineering-playbooks/`](16-engineering-playbooks/)
+
+| Prompt | Covers |
+|---|---|
+| [Role-Based Playbooks](16-engineering-playbooks/role-based-playbooks.md) | Common secure solving patterns for DevSecOps, SRE, platform, cloud & security engineers |
 
 ---
 
