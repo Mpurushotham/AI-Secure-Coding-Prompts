@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mpurushotham.github.io/AI-Secure-Coding-Prompts/sitemap.xml
