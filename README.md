@@ -260,6 +260,10 @@ An adjacent (non-security) collection of AI prompts for engineers running a job 
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). New prompts must follow [PROMPT-TEMPLATE.md](PROMPT-TEMPLATE.md).
 
+## License
+
+Released under the [MIT License](LICENSE) — free to use, copy, modify, and distribute, including in commercial work. Attribution appreciated but not required.
+
 ## Acknowledgements
 
 Category taxonomy inspired by the [Manicode Security prompt library](https://manicode.com/ai/index.html) by Jim Manico. All prompt content in this repository is original.
